@@ -1,5 +1,5 @@
 
-class ColorControl
+class ColorControl_Cls
 {
 	
 	// 色情報文字列 から RGB文字列('#FFFFFF')に変換
