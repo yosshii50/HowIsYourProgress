@@ -29,4 +29,60 @@ class ColorControl_Cls
 		           + (('0' + ImageData_Data[2].toString(16).toUpperCase()).substr(-2));
 	}
 	
+	// Percentに応じた中間色を取得
+	// Percentは 0～1 (0.5等)
+	GetProgressColorStr( FrColorStr , ToColorStr , Percent , CanvasID ){
+		
+		var FrColorRGB = this.Color2RGB( FrColorStr , CanvasID );
+		var ToColorRGB = this.Color2RGB( ToColorStr , CanvasID );
+		
+		return this.GetProgressColorRGB( FrColorRGB , ToColorRGB , Percent );
+	}
+	
+	// Percentに応じた中間色を取得
+	// Percentは 0～1 (0.5等)
+	// 色情報は16進RGB #000000～#FFFFFFの文字列
+	GetProgressColorRGB( FrColorRGB , ToColorRGB , Percent ){
+		
+		var FrColorRGB = new ColorControl_ColorRGB_Cls( FrColorRGB );
+		var ToColorRGB = new ColorControl_ColorRGB_Cls( ToColorRGB );
+		
+		var RetColorRGB = '#' + this.GetHalfwayHex( FrColorRGB.HexR , ToColorRGB.HexR , Percent )
+		                      + this.GetHalfwayHex( FrColorRGB.HexG , ToColorRGB.HexG , Percent )
+		                      + this.GetHalfwayHex( FrColorRGB.HexB , ToColorRGB.HexB , Percent );
+		
+		return RetColorRGB;
+	}
+	
+	// Percentに応じた中間数を取得
+	// Percentは 0～1 (0.5等)
+	// 数値は16進数 00～FFの文字列
+	GetHalfwayHex( SrcHex , DstHex , Percent ){
+		
+		var SrcInt = parseInt( SrcHex , 16 );
+		var DstInt = parseInt( DstHex , 16 );
+		var WayInt;
+		
+		if( SrcInt > DstInt ){
+			WayInt = Math.round( ( SrcInt - DstInt ) * ( 1 - Percent ) + DstInt );
+		} else {
+			WayInt = Math.round( ( DstInt - SrcInt ) * Percent + SrcInt );
+		}
+		
+		return (('0' + WayInt.toString(16).toUpperCase()).substr(-2));
+	}
+	
 }
+
+// 16進RGBi #xxxxxx を分割
+class ColorControl_ColorRGB_Cls
+{
+	constructor( ColorRGB )
+	{
+		this.ColorRGB = ColorRGB;
+		this.HexR = ColorRGB.substring(1,3);
+		this.HexG = ColorRGB.substring(3,5);
+		this.HexB = ColorRGB.substring(5,7);
+	}
+}
+
