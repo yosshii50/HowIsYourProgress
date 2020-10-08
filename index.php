@@ -41,10 +41,10 @@ document.writeln("進捗どうですか？<BR>");
 			// マウスを外すと色が戻る
 			Wak_Element.addEventListener( 'mouseout'  , function (event) {
 				
-				event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (1/4) , 'Wrk_Color2RGB_CanvasID' );
-				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (2/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 100);
-				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (3/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 200);
-				setTimeout( function () { event.target.style.backgroundColor = BaseColor ; } , 300);
+				                          event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (1/4) , 'Wrk_Color2RGB_CanvasID' ) ;           // 1/4
+				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (2/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 100); // 2/4
+				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (3/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 200); // 3/4
+				setTimeout( function () { event.target.style.backgroundColor = BaseColor                                                                                               ; } , 300); // 4/4
 				
 			} , false );
 			
