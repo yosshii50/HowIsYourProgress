@@ -12,11 +12,9 @@
 <script language="JavaScript">
 document.writeln("進捗どうですか？<BR>");
   
-	class HogeHoge
-	{
+	class HogeHoge {
 		
-		MsgOut( ID , MsgStr , BaseColor )
-		{
+		MsgOut( ID , MsgStr , BaseColor ) {
 			
 			var ColorControl = new ColorControl_Cls();
 			
@@ -60,8 +58,7 @@ document.writeln("進捗どうですか？<BR>");
 	TargetDay.setDate( TargetDay.getDate() - TargetDay.getDay() ); // 0:日曜日 6:土曜日
 	
 	var HogeObj = [];
-	for( IdxY = 1; IdxY <= 30 ; IdxY++ )
-	{
+	for( IdxY = 1; IdxY <= 30 ; IdxY++ ) {
 		
 		document.write( '<canvas id="Wak_CanvasIY' + IdxY + '" width="50" height="50"></canvas>' );
 		
@@ -70,15 +67,21 @@ document.writeln("進捗どうですか？<BR>");
 		
 		Wak_Element.style.backgroundColor = 'rgb(255,255,255)'; // 背景色
 		
-		if( TargetDay.getDate() <= 7 )
-		{
+		// 月が変わった場合
+		if( TargetDay.getDate() <= 7 ) {
+			
+			Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
+			Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width ,0 );
+			
+			// 「○月」を表示
 			Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
 			Wak_Context.font = '20px serif';
 			Wak_Context.fillText( ( TargetDay.getMonth() + 1 ) + '月' , 0, 20);
+			
 		}
 		
-		for( IdxX = 1; IdxX <= 7 ; IdxX++ )
-		{
+		// 一週間分表示
+		for( IdxX = 1; IdxX <= 7 ; IdxX++ ) {
 			
 			HogeObj.push( new HogeHoge() );
 			HogeObj[HogeObj.length - 1].MsgOut( TargetDay , TargetDay.getDate() , GetDayColor( TargetDay , ToDay ) );
@@ -86,19 +89,39 @@ document.writeln("進捗どうですか？<BR>");
 			TargetDay.setDate( TargetDay.getDate() + 1 );
 		}
 		
+		document.write( '<canvas id="Wak_CanvasIE' + IdxY + '" width="50" height="50"></canvas>' );
+		
+		var Wak_Element = document.getElementById('Wak_CanvasIE' + IdxY);
+		var Wak_Context = Wak_Element.getContext('2d');
+		
+		Wak_Element.style.backgroundColor = 'rgb(255,255,255)'; // 背景色
+		
+		// 月が変わった場合
+		if( TargetDay.getDate() <= 7 ) {
+			
+			Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
+			Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width ,0 );
+			
+			// 「○月」を表示
+			Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
+			Wak_Context.font = '20px serif';
+			Wak_Context.fillText( ( TargetDay.getMonth() + 1 ) + '月' , 0, 20);
+			
+		}
+		
 		document.write( '<br>' );
 		
 	}
 	
-	function GetDayColor( WTargetDay , WToDay ){
+	function GetDayColor( WTargetDay , WToDay ) {
 		
 		// 当日の色
-		if( WTargetDay.toLocaleDateString()  == WToDay.toLocaleDateString() ){
+		if( WTargetDay.toLocaleDateString()  == WToDay.toLocaleDateString() ) {
 			return 'rgb(255,255,0)';
 		}
 		
 		// 曜日毎に変更
-		switch( WTargetDay.getDay() ){ // 0:日曜日 6:土曜日
+		switch( WTargetDay.getDay() ) { // 0:日曜日 6:土曜日
 		case 0:
 		case 6:
 			return 'rgb(255,128,128)';
