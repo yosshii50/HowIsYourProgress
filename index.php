@@ -6,6 +6,7 @@
 <body>
 
 <canvas id="Wrk_Color2RGB_CanvasID" width="1" height="1" style="display:none;"></canvas><br>
+
 <script language="JavaScript" src="ColorControl_Cls.js"></script>
 
 <script language="JavaScript">
