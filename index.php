@@ -4,6 +4,10 @@
 <title>進捗どうですか？</title>
 </head>
 <body>
+
+<canvas id="Wrk_Color2RGB_CanvasID" width="1" height="1" style="display:none;"></canvas><br>
+<script language="JavaScript" src="ColorControl_Cls.js"></script>
+
 <script language="JavaScript">
 document.writeln("進捗どうですか？<BR>");
   
@@ -12,6 +16,8 @@ document.writeln("進捗どうですか？<BR>");
 		
 		MsgOut( ID , MsgStr , BaseColor )
 		{
+			
+			var ColorControl = new ColorControl_Cls();
 			
 			document.write( '<canvas id="Wak_CanvasID' + ID + '" width="50" height="50"></canvas>' );
 			
@@ -34,7 +40,12 @@ document.writeln("進捗どうですか？<BR>");
 			
 			// マウスを外すと色が戻る
 			Wak_Element.addEventListener( 'mouseout'  , function (event) {
-				event.target.style.backgroundColor = BaseColor;
+				
+				event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (1/4) , 'Wrk_Color2RGB_CanvasID' );
+				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (2/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 100);
+				setTimeout( function () { event.target.style.backgroundColor = ColorControl.GetProgressColorStr( 'rgb(127, 255, 127)' , BaseColor , (3/4) , 'Wrk_Color2RGB_CanvasID' ) ; } , 200);
+				setTimeout( function () { event.target.style.backgroundColor = BaseColor ; } , 300);
+				
 			} , false );
 			
 		}
