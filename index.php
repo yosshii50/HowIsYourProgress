@@ -26,8 +26,8 @@ document.writeln("進捗どうですか？<BR>");
 			Wak_Element.style.backgroundColor = BaseColor; // 背景色
 			
 			Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
-			Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width
-			                           , Wak_Element.getBoundingClientRect().height);
+			Wak_Context.strokeRect( 0 , 0 ,     Wak_Element.getBoundingClientRect().width  , 0 ); // 上の線
+			Wak_Context.strokeRect( 0 , 0 , 0 , Wak_Element.getBoundingClientRect().height     ); // 左の線
 			Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
 			Wak_Context.font = '20px serif';
 			Wak_Context.fillText( MsgStr , 0, 20);
@@ -60,24 +60,15 @@ document.writeln("進捗どうですか？<BR>");
 	var HogeObj = [];
 	for( IdxY = 1; IdxY <= 30 ; IdxY++ ) {
 		
-		document.write( '<canvas id="Wak_CanvasIY' + IdxY + '" width="50" height="50"></canvas>' );
-		
-		var Wak_Element = document.getElementById('Wak_CanvasIY' + IdxY);
-		var Wak_Context = Wak_Element.getContext('2d');
-		
+		// 左側の月表示用Canvas生成
+		document.write( '<canvas id="Wak_CanvasML' + IdxY + '" width="50" height="50"></canvas>' );
+		var Wak_Element = document.getElementById('Wak_CanvasML' + IdxY);
 		Wak_Element.style.backgroundColor = 'rgb(255,255,255)'; // 背景色
 		
 		// 月が変わった場合
 		if( TargetDay.getDate() <= 7 ) {
-			
-			Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
-			Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width ,0 );
-			
-			// 「○月」を表示
-			Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
-			Wak_Context.font = '20px serif';
-			Wak_Context.fillText( ( TargetDay.getMonth() + 1 ) + '月' , 0, 20);
-			
+			// 「〇月」を表示
+			ViewDisplayTuki( Wak_Element , ( TargetDay.getMonth() + 1 ) + '月' );
 		}
 		
 		// 一週間分表示
@@ -89,30 +80,37 @@ document.writeln("進捗どうですか？<BR>");
 			TargetDay.setDate( TargetDay.getDate() + 1 );
 		}
 		
-		document.write( '<canvas id="Wak_CanvasIE' + IdxY + '" width="50" height="50"></canvas>' );
-		
-		var Wak_Element = document.getElementById('Wak_CanvasIE' + IdxY);
-		var Wak_Context = Wak_Element.getContext('2d');
-		
+		// 右側の月表示用Canvas生成
+		document.write( '<canvas id="Wak_CanvasMR' + IdxY + '" width="50" height="50"></canvas>' );
+		var Wak_Element = document.getElementById('Wak_CanvasMR' + IdxY);
 		Wak_Element.style.backgroundColor = 'rgb(255,255,255)'; // 背景色
 		
 		// 月が変わった場合
-		if( TargetDay.getDate() <= 7 ) {
-			
-			Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
-			Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width ,0 );
-			
-			// 「○月」を表示
-			Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
-			Wak_Context.font = '20px serif';
-			Wak_Context.fillText( ( TargetDay.getMonth() + 1 ) + '月' , 0, 20);
-			
+		if( TargetDay.getDate() >= 2 && TargetDay.getDate() <= 8 ) {
+			// 「〇月」を表示
+			ViewDisplayTuki( Wak_Element , ( TargetDay.getMonth() + 1 ) + '月' );
 		}
 		
 		document.write( '<br>' );
 		
 	}
 	
+	// 「〇月」を表示
+	function ViewDisplayTuki( Wak_Element , MsgString ) {
+		
+		var Wak_Context = Wak_Element.getContext('2d');
+		
+		Wak_Context.strokeStyle = 'rgb(0,0,0)';  //線の色
+		Wak_Context.strokeRect(0, 0, Wak_Element.getBoundingClientRect().width ,0 );
+		
+		// 「○月」を表示
+		Wak_Context.fillStyle = 'rgb(0,0,0)'; // 文字色
+		Wak_Context.font = '20px serif';
+		Wak_Context.fillText( MsgString , 0, 20);
+		
+	}
+	
+	// 背景色取得
 	function GetDayColor( WTargetDay , WToDay ) {
 		
 		// 当日の色
