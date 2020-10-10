@@ -15,8 +15,8 @@ foreach ( $Filedata_arr as &$Line_data ){
 	$Line_arr[] = $LineNo;
 	
 	// [TAB]区切りを配列に格納
-	$Line_arr += explode( "\t" , $Line_data );
-	//                  ↑仕様上の制限から[']はNG
+	$Line_arr = array_merge( $Line_arr , explode( "\t" , $Line_data ) );
+	//                                            ↑仕様上の制限から[']はNG
 	
 	// 返信用配列に配列ごと保存
 	$Send_arr[] = $Line_arr;
