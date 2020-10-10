@@ -31,15 +31,15 @@
 		
 		Xhr.onreadystatechange = function() {
 			
-			if ( Xhr.readyState === 4 ) { // 4:通信完了
-				if ( Xhr.status === 200 ) { // 200:成功
+			if ( Xhr.status === 200 ) { // 200:成功
+				if ( Xhr.readyState === 4 ) { // 4:通信完了
 					Modoru();
 					// alert("完了");
-					return;
+					// return;
 				}
+			} else {
+				document.getElementById('ErrMsg').innerHTML = 'readyState=' + Xhr.readyState + ' status=' + Xhr.status ;
 			}
-			
-			document.getElementById('ErrMsg').innerHTML = 'readyState=' + Xhr.readyState + ' status=' + Xhr.status ;
 			
 		}
 		

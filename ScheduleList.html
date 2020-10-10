@@ -5,9 +5,50 @@
 </head>
 <body>
 
+<span id="ErrMsg"></span>
 
-
-
+<script type='text/javascript'>
+	
+	var Xhr = new XMLHttpRequest();
+	
+	Xhr.open( 'POST', 'ScheduleList.php' );
+	Xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+	
+	Xhr.send();
+	
+	Xhr.onreadystatechange = function() {
+		
+		if ( Xhr.status === 200 ) { // 200:成功
+			if ( Xhr.readyState === 4 ) { // 4:通信完了
+				
+				document.write( '<table border="1">' );
+				
+				document.write( '<tr>' );
+					document.write( '<th>日付</th>'   );
+					document.write( '<th>内容</th>'   );
+					document.write( '<th>背景色</th>' );
+				document.write( '</tr>' );
+				
+				for( Linedata_arr of JSON.parse( Xhr.responseText ) ) {
+					
+					document.write( '<tr>' );
+					document.write( '<td>' + Linedata_arr[0] + '</td>' );
+					document.write( '<td>' + Linedata_arr[1] + '</td>' );
+					document.write( '<td>' + Linedata_arr[2] + '</td>' );
+					document.write( '</tr>' );
+					
+				}
+				
+				document.write( '</table>' );
+				
+			}
+		} else {
+			document.getElementById('ErrMsg').innerHTML = 'readyState=' + Xhr.readyState + ' status=' + Xhr.status ;
+		}
+		
+	}
+	
+</script>
 
 
 </body>
