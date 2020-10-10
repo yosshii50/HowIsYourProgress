@@ -5,6 +5,11 @@
 </head>
 <body>
 
+<input type="button" value="戻る" onClick="location.href='./'">
+<input type="button" value="追加" onClick="location.href='ScheduleAdd.html'">
+
+<span id="SdlLstID"></span>
+
 <span id="ErrMsg"></span>
 
 <script type='text/javascript'>
@@ -21,25 +26,31 @@
 		if ( Xhr.status === 200 ) { // 200:成功
 			if ( Xhr.readyState === 4 ) { // 4:通信完了
 				
-				document.write( '<table border="1">' );
+				var SdlLstStr = '<table border="1">';
 				
-				document.write( '<tr>' );
-					document.write( '<th>日付</th>'   );
-					document.write( '<th>内容</th>'   );
-					document.write( '<th>背景色</th>' );
-				document.write( '</tr>' );
+				SdlLstStr += '<tr>';
+				SdlLstStr += '<th></th>'  ;
+				SdlLstStr += '<th>日付</th>'  ;
+				SdlLstStr += '<th>内容</th>'  ;
+				SdlLstStr += '<th>背景色</th>';
+				SdlLstStr += '<th><input type="button" value="削除" onClick="Sakujyo()"></th>'  ;
+				SdlLstStr += '</tr>';
 				
 				for( Linedata_arr of JSON.parse( Xhr.responseText ) ) {
 					
-					document.write( '<tr>' );
-					document.write( '<td>' + Linedata_arr[0] + '</td>' );
-					document.write( '<td>' + Linedata_arr[1] + '</td>' );
-					document.write( '<td>' + Linedata_arr[2] + '</td>' );
-					document.write( '</tr>' );
+					SdlLstStr += '<tr>';
+					SdlLstStr += '<th><input type="button" value="修正" onClick="Syuusei()"></th>'  ;
+					SdlLstStr += '<td>' + Linedata_arr[0] + '</td>';
+					SdlLstStr += '<td>' + Linedata_arr[1] + '</td>';
+					SdlLstStr += '<td>' + Linedata_arr[2] + '</td>';
+					SdlLstStr += '<th><input type="checkbox" name="delete"></th>'  ;
+					SdlLstStr += '</tr>';
 					
 				}
 				
-				document.write( '</table>' );
+				SdlLstStr += '</table>';
+				
+				document.getElementById('SdlLstID').innerHTML = SdlLstStr ;
 				
 			}
 		} else {
@@ -49,7 +60,6 @@
 	}
 	
 </script>
-
 
 </body>
 </html>
