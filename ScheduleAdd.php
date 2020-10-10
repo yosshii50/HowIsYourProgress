@@ -1,19 +1,19 @@
-<html>
-<meta http-equiv="content-type" charset="utf-8">
-<head>
-<title>スケジュール追加</title>
-</head>
-<body>
-<a href="./">戻る</a><br>
-<br>
+<?php
 
+$date      = filter_input( INPUT_POST , "date"      );
+$data      = filter_input( INPUT_POST , "data"      );
+$backcolor = filter_input( INPUT_POST , "backcolor" );
 
-日付<input type="text" name="date" size="20" maxlength="20"><br>
-内容<input type="text" name="date" size="20" maxlength="20"><br>
-背景色<input type="text" name="date" size="20" maxlength="20"><br>
+$file = 'Schedule.txt';
 
+$current = file_get_contents( $file );
 
+$current .= $date      . "\t";
+$current .= $data      . "\t";
+$current .= $backcolor . "\t";
+$current .= "\n";
 
-</body>
-</html>
+file_put_contents( $file , $current );
+
+?>
 

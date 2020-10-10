@@ -5,7 +5,7 @@
 </head>
 <body>
 
-スケジュール <a href="ScheduleAdd.php">追加</a> / <a href="ScheduleList.php">一覧(修正/削除)</a>
+スケジュール <a href="ScheduleAdd.html">追加</a> / <a href="ScheduleList.html">一覧(修正/削除)</a>
 
 
 <canvas id="Wrk_Color2RGB_CanvasID" width="1" height="1" style="display:none;"></canvas><br>
