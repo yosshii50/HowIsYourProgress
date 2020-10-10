@@ -39,10 +39,10 @@
 				for( Linedata_arr of JSON.parse( Xhr.responseText ) ) {
 					
 					SdlLstStr += '<tr>';
-					SdlLstStr += '<th><input type="button" value="修正" onClick="Syuusei()"></th>'  ;
-					SdlLstStr += '<td>' + Linedata_arr[0] + '</td>';
+					SdlLstStr += '<th><input type="button" value="修正" onClick="location.href=\'ScheduleAdd.html?l=' + Linedata_arr[0] + '\'"></th>' ;
 					SdlLstStr += '<td>' + Linedata_arr[1] + '</td>';
 					SdlLstStr += '<td>' + Linedata_arr[2] + '</td>';
+					SdlLstStr += '<td>' + Linedata_arr[3] + '</td>';
 					SdlLstStr += '<th><input type="checkbox" name="delete"></th>'  ;
 					SdlLstStr += '</tr>';
 					
