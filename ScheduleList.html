@@ -6,7 +6,7 @@
 <body>
 
 <input type="button" value="戻る" onClick="location.href='./'">
-<input type="button" value="追加" onClick="location.href='ScheduleAdd.html'">
+<input type="button" value="追加" onClick="location.href='ScheduleWrite.html?p=l'">
 
 <span id="SdlLstID"></span>
 
@@ -39,7 +39,7 @@
 				for( Linedata_arr of JSON.parse( Xhr.responseText ) ) {
 					
 					SdlLstStr += '<tr>';
-					SdlLstStr += '<th><input type="button" value="修正" onClick="location.href=\'ScheduleAdd.html?l=' + Linedata_arr[0] + '\'"></th>' ;
+					SdlLstStr += '<th><input type="button" value="修正" onClick="location.href=\'ScheduleWrite.html?p=l&l=' + Linedata_arr[0] + '\'"></th>' ;
 					SdlLstStr += '<td>' + Linedata_arr[1] + '</td>';
 					SdlLstStr += '<td>' + Linedata_arr[2] + '</td>';
 					SdlLstStr += '<td>' + Linedata_arr[3] + '</td>';

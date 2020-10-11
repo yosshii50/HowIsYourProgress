@@ -1,0 +1,98 @@
+<html>
+<meta http-equiv="content-type" charset="utf-8">
+<head>
+<title>スケジュール追加</title>
+</head>
+<body>
+
+<form>
+<input type="button" value="戻る" onClick="Modoru()"><br>
+日付<input type="text" id="date" size="20" maxlength="20"><br>
+内容<input type="text" id="data" size="20" maxlength="20"><br>
+背景色<input type="text" id="backcolor" size="20" maxlength="20"><br>
+<input type="button" value="実行" onClick="Jikkou()"><br>
+
+</form>
+
+<span id="ErrMsg"></span>
+
+<script type='text/javascript'>
+	
+	var params = (new URL(document.location)).searchParams;
+	var Param_p = params.get('p');
+	var Param_l = params.get('l');
+	
+	// 初期表示
+	ReadData( Param_l );
+	
+	// データの取得と表示
+	function ReadData( LineNo ) {
+		
+		var Xhr = new XMLHttpRequest();
+		
+		Xhr.open( 'POST', 'ScheduleRead.php' );
+		Xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		
+		Xhr.send( 'lineno=' + LineNo );
+		
+		Xhr.onreadystatechange = function() {
+			
+			if ( Xhr.status === 200 ) { // 200:成功
+				if ( Xhr.readyState === 4 ) { // 4:通信完了
+					
+					data = JSON.parse( Xhr.responseText );
+					
+					document.getElementById('date'     ).value = data[0] ;
+					document.getElementById('data'     ).value = data[1] ;
+					document.getElementById('backcolor').value = data[2] ;
+				}
+			} else {
+				document.getElementById('ErrMsg').innerHTML = 'readyState=' + Xhr.readyState + ' status=' + Xhr.status ;
+			}
+			
+		}
+		
+	}
+	
+	// 保存実行
+	function Jikkou() {
+		
+		var Xhr = new XMLHttpRequest();
+		
+		Xhr.open( 'POST', 'ScheduleWrite.php' );
+		Xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+		
+		Xhr.send( 'date='      + document.getElementById('date'     ).value +
+		         '&data='      + document.getElementById('data'     ).value +
+		         '&backcolor=' + document.getElementById('backcolor').value +
+		         '&lineno='    + Param_l );
+		
+		Xhr.onreadystatechange = function() {
+			
+			if ( Xhr.status === 200 ) { // 200:成功
+				if ( Xhr.readyState === 4 ) { // 4:通信完了
+					Modoru();
+					// alert("完了");
+					// return;
+				}
+			} else {
+				document.getElementById('ErrMsg').innerHTML = 'readyState=' + Xhr.readyState + ' status=' + Xhr.status ;
+			}
+			
+		}
+		
+	}
+	
+	// 元のページに戻る
+	function Modoru() {
+		if( Param_p == 'l' ){
+			window.location.href = 'ScheduleList.html';
+		} else {
+			window.location.href = './';
+		}
+	}
+	
+</script>
+</body>
+</html>
+
