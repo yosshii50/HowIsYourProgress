@@ -1,7 +1,4 @@
-111111	11111	1111111	
-bbb			
-ccccdscasdac	cdsacsda	fewwefw	
-aaaa	11111	aaaaa	
-bbb3333			
-cccc			
-ferqfewq	fewqfew	fewew	
+a	a	a	
+b	b	b	
+c	c	c	
+d	d	d	

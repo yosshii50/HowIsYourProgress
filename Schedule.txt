@@ -1,7 +1,5 @@
-22222	222222	222222	
-bbb			
-ccccdscasdac	cdsacsda	fewwefw	
-aaaa	11111	aaaaa	
-bbb3333			
-cccc			
-ferqfewq	fewqfew	fewew	
+a	a	a	
+b	b	b	
+c	c	c	
+d	d	d	
+e	e	e	

@@ -6,6 +6,9 @@ $Filedata_arr = file( 'Schedule.txt' );
 // 行番号
 $LineNo = 0;
 
+// 配列初期化
+$Send_arr = [];
+
 // 行ごとの配列から、行ごとに処理
 foreach ( $Filedata_arr as &$Line_data ){
 	
