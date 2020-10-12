@@ -1,4 +1,2 @@
-a	a	a	
-b	b	b	
-c	c	c	
-d	d	d	
+Sunday		rgb(255, 0, 0)	
+Sunday		rgb(255, 0, 255)	
