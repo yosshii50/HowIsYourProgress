@@ -13,7 +13,10 @@
 
 <span id="ErrMsg"></span>
 
-<script type='text/javascript'>
+<canvas id="Wrk_Color2RGB_CanvasID" width="1" height="1" style="display:none;"></canvas><br>
+<script language="JavaScript" src="ColorControl_Cls.js"></script>
+
+<script language="JavaScript">
 	
 	window.onload = function(){
 		
@@ -40,6 +43,7 @@
 			if ( Xhr.status === 200 ) { // 200:成功
 				if ( Xhr.readyState === 4 ) { // 4:通信完了
 					
+					var ColorControl = new ColorControl_Cls();
 					var SdlLstStr = '<table border="1">';
 					
 					SdlLstStr += '<tr>';
@@ -56,7 +60,8 @@
 						SdlLstStr += '<th><input type="button" value="修正" onClick="location.href=\'ScheduleWrite.html?p=l&l=' + Linedata_arr[0] + '\'"></th>' ;
 						SdlLstStr += '<td>' + Linedata_arr[1] + '</td>';
 						SdlLstStr += '<td>' + Linedata_arr[2] + '</td>';
-						SdlLstStr += '<td>' + Linedata_arr[3] + '</td>';
+						SdlLstStr += '<td bgcolor="' + ColorControl.Color2RGB( Linedata_arr[3] , 'Wrk_Color2RGB_CanvasID' ) + '">' + Linedata_arr[3] + '</td>';
+						//SdlLstStr += '<td>' + Linedata_arr[3] + '</td>';
 						SdlLstStr += '<th><input type="checkbox" id="delcbox' + Linedata_arr[0] + '"></th>'  ;
 						SdlLstStr += '</tr>';
 						
