@@ -1,8 +1,3 @@
-<<<<<<< HEAD
 Sunday,Saturday		rgb(255,128,128)	
 ToDay		rgb(255,255,0)	
 MousePoint		rgb(127, 255, 127)	
-=======
-Sunday		rgb(255, 128,128)	
-Sunday		rgb(255, 0, 255)	
->>>>>>> e4675ce1c9b9d68896c75c4dfe1c422904414d8b
