@@ -34,7 +34,7 @@ function ComboBoxInit1() {
 	// 変動値セット
 	var ima = new Date(); // 今日の日付
 	var YearST = ima.getFullYear() - 2020; // ２年前の令和年取得
-	var YearED = YearST + 5; // ５年分を予定
+	var YearED = YearST + 5; // ５年分
 	
 	for( var YearWK = YearST ; YearWK < YearED ; YearWK++ ) {
 		// 令和3年までは初期値で入れているので、令和3年以降のみ追加
@@ -71,10 +71,10 @@ function ComboBoxChange1() {
 // 文字内容変更時
 function TextChange1() {
 	
-	var WarekiList = [ [ 'M' , 1867 , '明治' ]
-	                 , [ 'T' , 1911 , '大正' ]
-	                 , [ 'S' , 1925 , '昭和' ]
-	                 , [ 'H' , 1988 , '平成' ]
+//	var WarekiList = [ [ 'M' , 1867 , '明治' ]
+//	                 , [ 'T' , 1911 , '大正' ]
+//	                 , [ 'S' , 1925 , '昭和' ]
+	var WarekiList = [ [ 'H' , 1988 , '平成' ]
 	                 , [ 'R' , 2018 , '令和' ]
 	                 ];
 	
