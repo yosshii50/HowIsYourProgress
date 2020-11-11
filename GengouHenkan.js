@@ -1,13 +1,11 @@
 
+// 表示に必要なHTML出力
+document.write('<select id="ComboBox1" onchange="ComboBoxChange1();"/>');
+document.write('<input type="text" id="Text1"size="5" onkeyup="TextChange1();"> ');
+document.write('<span id="ViewString"></span>');
+
 // 起動時に実行
-window.onload = function(){
-	
-	var InHTML = '';
-	InHTML += '<select id="ComboBox1" onchange="ComboBoxChange1();"/>';
-	InHTML += '<input type="text" id="Text1"size="5" onkeyup="TextChange1();"> ';
-	InHTML += '<span id="ViewString"></span>';
-	
-	document.getElementById('GengouHenkanID').innerHTML = InHTML;
+document.addEventListener('DOMContentLoaded', function(){
 	
 	// 内容初期化
 	ComboBoxInit1();
@@ -16,7 +14,7 @@ window.onload = function(){
 	ComboBoxChange1();
 	TextChange1();
 	
-}
+} , false )
 
 // 内容初期化
 function ComboBoxInit1() {
