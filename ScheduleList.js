@@ -1,4 +1,6 @@
 
+// スケジュール一覧
+
 // 表示に必要なHTML出力
 document.write('スケジュール ');
 document.write('<input type="button" value="追加" onClick="location.href=\'ScheduleWrite.html?p=l\'">');

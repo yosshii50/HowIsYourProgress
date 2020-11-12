@@ -1,4 +1,6 @@
 
+// 元号変換
+
 // 表示に必要なHTML出力
 document.write('<select id="ComboBox1" onchange="ComboBoxChange1();"/>');
 document.write('<input type="text" id="Text1"size="5" onkeyup="TextChange1();"> ');

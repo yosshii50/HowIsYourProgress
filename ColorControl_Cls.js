@@ -1,4 +1,9 @@
 
+// 色情報変換関係
+
+// 表示に必要なHTML出力
+document.write('<canvas id="Wrk_Color2RGB_CanvasID" width="1" height="1" style="display:none;"></canvas><br>');
+
 class ColorControl_Cls
 {
 	
